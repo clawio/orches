@@ -1,0 +1,83 @@
+#service.elk:
+#   container_name: service.elk
+#   image: elasticsearch
+#   volumes:
+#       - "/tmp/elk:/usr/share/elasticsearch/data"
+
+#service.fluentd:
+#    container_name: service.fluentd
+#    build: dockerimages/service.fluentd/
+#    ports:
+#    - "24224:24224"
+#    links:
+#        - "service.elk:service-elk"
+
+
+#service.kibana:
+#    container_name: service.kibana
+#    image: kibana
+#    links:
+#        - "service.elk:elasticsearch"
+#    ports:
+#        - "5601:5601"
+
+service.auth:
+  container_name: service.auth
+  build: ./service.auth
+  ports:
+   - "57000:57000"
+#  log_driver: fluentd
+
+service.localstore.prop.mysql:
+  container_name: service.localstore.prop.mysql
+  image: mysql
+  ports:
+   - "3306:3306"
+  environment:
+    MYSQL_DATABASE: prop
+    MYSQL_USER: root
+    MYSQL_PASSWORD: admin
+    MYSQL_ROOT_PASSWORD: admin
+#  log_driver: fluentd
+
+service.localstore.prop:
+  container_name: service.localstore.prop
+  build: ./service.localstore.prop
+  ports:
+   - "57003:57003"
+  links:
+   - "service.localstore.prop.mysql:service-localstore-prop-mysql"
+#  log_driver: fluentd
+
+service.localstore.data:
+  container_name: service.localstore.data
+  build: ./service.localstore.data
+  ports:
+   - "57002:57002"
+  volumes:
+   - /tmp:/tmp
+  links:
+   - "service.localstore.prop:service-localstore-prop"
+#  log_driver: fluentd
+
+service.localstore.meta:
+  container_name: service.localstore.meta
+  build: ./service.localstore.meta
+  ports:
+   - "57001:57001"
+  volumes:
+   - /tmp:/tmp
+  links:
+   - "service.localstore.prop:service-localstore-prop"
+#  log_driver: fluentd
+
+service.ocwebdav:
+  container_name: service.ocwebdav
+  build: ./service.ocwebdav
+  ports:
+      - "57004:57004"
+  links:
+      - "service.localstore.data:service-localstore-data"
+      - "service.localstore.meta:service-localstore-meta"
+      - "service.auth:service-auth"
+#  log_driver: fluentd
