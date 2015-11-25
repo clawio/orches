@@ -1,8 +1,8 @@
-#service.elk:
-#   container_name: service.elk
-#   image: elasticsearch
-#   volumes:
-#       - "/tmp/elk:/usr/share/elasticsearch/data"
+service.elk:
+   container_name: service.elk
+   image: michaloo/elasticsearch
+   ports:
+       - "9200:9200"
 
 #service.fluentd:
 #    container_name: service.fluentd
