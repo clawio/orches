@@ -1,8 +1,9 @@
 {
     "service-auth": {
+        "container_name": "service-auth",
         "build": "./service-auth",
         "ports": ["57000:57000"],
-        "enviroment": {
+        "environment": {
             "CLAWIO_AUTH_DBDSN": "/tmp/users.db",
             "CLAWIO_AUTH_DRIVER": "sqlite3",
             "CLAWIO_AUTH_SIGNMETHOD": "HS256",
@@ -12,61 +13,78 @@
     },
 
     "service-localfsxattr-mysqlprop-mysql": {
-        "build": "./service-mysql",
+        "container_name": "service-localfsxattr-mysqlprop-mysql",
+        "build": "./service-mysql-localfsxattr",
         "ports": ["57015:57015"],
-        "enviroment": {
+        "environment": {
             "MYSQL_DATABASE": "prop",
             "MYSQL_PORT": 57015,
             "MYSQL_USER": "prop",
-            "MYSQL_PASSWORD": "passforuserprop"
+            "MYSQL_PASSWORD": "passforuserprop",
+            "MYSQL_ROOT_PASSWORD": "admin",
         }
     },
 
     "service-localfsxattr-mysqlprop": {
+        "container_name": "service-localfsxattr-mysqlprop",
         "build": "./service-localfsxattr-mysqlprop",
         "ports": ["57013:57013"],
-        "enviroment": {
+        "environment": {
             "CLAWIO_LOCALFSXATTR_MYSQLPROP_DSN": "prop:passforuserprop@tcp(service-localfsxattr-mysqlprop-mysql:57015)/prop",
             "CLAWIO_LOCALFSXATTR_MYSQLPROP_PORT": 57013,
             "CLAWIO_SHAREDSECRET": "secret"
-        }
+        },
+        "links": ["service-localfsxattr-mysqlprop-mysql:service-localfsxattr-mysqlprop-mysql"]
     },
 
     "service-localfsxattr-mysqldata": {
+        "container_name": "service-localfsxattr-mysqldata",
         "build": "./service-localfsxattr-data",
         "ports": ["57012:57012"],
-        "enviroment": {
+        "environment": {
             "CLAWIO_LOCALFSXATTR_DATA_DATADIR": "/tmp/localfsxattr-mysql",
             "CLAWIO_LOCALFSXATTR_DATA_TMPDIR": "/tmp/localfsxattr-mysql",
             "CLAWIO_LOCALFSXATTR_DATA_CHECKSUM": "md5",
             "CLAWIO_LOCALFSXATTR_DATA_PORT": 57012,
             "CLAWIO_LOCALFSXATTR_DATA_PROP": "service-localfsxattr-mysqlprop:57013",
             "CLAWIO_SHAREDSECRET": "secret"
-        }
+        },
+        "links": ["service-localfsxattr-mysqlprop:service-localfsxattr-mysqlprop"],
+        "volumes": ["/tmp:/tmp"]
     },
 
     "service-localfsxattr-mysqlmeta": {
+        "container_name": "service-localfsxattr-mysqlmeta",
         "build": "./service-localfsxattr-meta",
         "ports": ["57011:57011"],
-        "enviroment": {
+        "environment": {
             "CLAWIO_LOCALFSXATTR_META_DATADIR": "/tmp/localfsxattr-mysql",
             "CLAWIO_LOCALFSXATTR_META_TMPDIR": "/tmp/localfsxattr-mysql",
             "CLAWIO_LOCALFSXATTR_META_PORT": 57011,
             "CLAWIO_LOCALFSXATTR_META_PROP": "service-localfsxattr-mysqlprop:57013",
             "CLAWIO_SHAREDSECRET": "secret"
-        }
+        },
+        "links": ["service-localfsxattr-mysqlprop:service-localfsxattr-mysqlprop"],
+        "volumes": ["/tmp:/tmp"]
     },
 
     "service-localfsxattr-mysqlocwebdav": {
+        "container_name": "service-localfsxattr-mysqlocwebdav",
         "build": "./service-ocwebdav",
         "ports": ["57014:57014"],
-        "enviroment": {
+        "environment": {
             "CLAWIO_OCWEBDAV_TMPDIR": "/tmp/chunks",
             "CLAWIO_OCWEBDAV_AUTH": "service-auth:57000",
             "CLAWIO_OCWEBDAV_META": "service-localfsxattr-mysqlmeta:57011",
             "CLAWIO_OCWEBDAV_DATA": "http://service-localfsxattr-mysqldata:57012",
             "CLAWIO_OCWEBDAV_PORT": 57014,
             "CLAWIO_SHAREDSECRET": "secret"
-        }
+        },
+        "links": [
+            "service-auth:service-auth",
+            "service-localfsxattr-mysqldata:service-localfsxattr-mysqldata",
+            "service-localfsxattr-mysqlmeta:service-localfsxattr-mysqlmeta"
+        ],
+        "volumes": ["/tmp:/tmp"]
     }
 }
