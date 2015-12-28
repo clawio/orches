@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-RESULTDIR=/home/hugo/results
+RESULTDIR=$HOME/results
 USERNAME=demo
 PASSWORD=demo
 INITIAL="$(echo ${USERNAME} | head -c 1)"
