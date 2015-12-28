@@ -6,13 +6,15 @@ USERNAME=demo
 PASSWORD=demo
 INITIAL="$(echo ${USERNAME} | head -c 1)"
 TESTDIR=/local/users/${INITIAL}/${USERNAME}
-NUMREQ=10000
+NUMREQ=5000
 
 
 # Stat with no depth = PROPFIND with Depth = 0
 function bench_nochildren {
-    OUT=${RESULTDIR}/$1-$NUMREQ-nochildren
+OUT=${RESULTDIR}/`date +%Y%m%d%H%M`-$1-$NUMREQ-nochildren
     CONCURRENCY=(1 2 4 8 16 32 64 128 256 512 1024 2048 4096)
+    #CONCURRENCY=(4096 2048 1024 512 256 128 64 32 16 8 4 2 1)
+    #CONCURRENCY=(1 3 5 10 30 50 100 300 500 1000 3000)
 
     mkdir -p $OUT
     NUMPROVAS=5
