@@ -5,7 +5,7 @@ RESULTDIR=$HOME/results
 USERNAME=demo
 PASSWORD=demo
 INITIAL="$(echo ${USERNAME} | head -c 1)"
-TESTDIR=/local/users/${INITIAL}/${USERNAME}
+TESTDIR=/local/users/${INITIAL}/${USERNAME}/testing
 NUMREQ=5000
 
 
