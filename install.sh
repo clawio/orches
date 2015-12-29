@@ -30,5 +30,15 @@ cp orches/deploy.json .
 # some containers need to be launched in sequence and
 # compose does not guarantee that, we launch them in manually
 # in the desired sequence.
-docker-compose -f deploy.json build --no-cache --force-remove
-docker-compose -f localfs-all-deploy.json up -d --force-recreate
+docker-compose -f deploy.json build --no-cache --force-rm
+docker-compose -f deploy.json up -d --force-recreate
+
+# show services running.
+docker-compose -f deploy.json ps
+
+echo "ClawIO is up and running"
+echo "If you see some service with status Exit run:"
+echo " 'docker-compose -f deploy.json up -d' a couple of times until"
+echo "all services are up."
+
+
