@@ -33,8 +33,8 @@
         "environment": {
             "CLAWIO_LOCALFS_PROP_DSN": "prop:passforuserprop@tcp(service-localfs-prop-mysql:57005)/prop",
             "CLAWIO_LOCALFS_PROP_PORT": 57003,
-            "CLAWIO_LOCALFS_PROP_MAXSQLIDLE": 1024,
-            "CLAWIO_LOCALFS_PROP_MAXSQLCONCURRENCY": 1024,
+            "CLAWIO_LOCALFS_PROP_MAXSQLIDLE": 8192,
+            "CLAWIO_LOCALFS_PROP_MAXSQLCONCURRENCY": 8192,
             "CLAWIO_SHAREDSECRET": "secret"
         },
         "links": ["service-localfs-prop-mysql:service-localfs-prop-mysql"]
@@ -65,9 +65,9 @@
             "CLAWIO_LOCALFS_META_TMPDIR": "/tmp",
             "CLAWIO_LOCALFS_META_PORT": 57001,
             "CLAWIO_LOCALFS_META_PROP": "service-localfs-prop:57003",
-            "CLAWIO_LOCALFS_META_PROPMAXACTIVE": 1024,
-            "CLAWIO_LOCALFS_META_PROPMAXIDLE": 1024,
-            "CLAWIO_LOCALFS_META_PROPMAXCONCURRENCY": 1024,
+            "CLAWIO_LOCALFS_META_PROPMAXACTIVE": 8192,
+            "CLAWIO_LOCALFS_META_PROPMAXIDLE": 8192,
+            "CLAWIO_LOCALFS_META_PROPMAXCONCURRENCY": 8192,
             "CLAWIO_SHAREDSECRET": "secret"
         },
         "links": ["service-localfs-prop:service-localfs-prop"],
@@ -106,6 +106,8 @@
         "ports": ["57023:57023"],
         "environment": {
             "CLAWIO_LOCALFSXATTR_REDISPROP_DSN": "service-localfsxattr-redisprop-redis:6379",
+            "CLAWIO_LOCALFSXATTR_REDISPROP_MAXREDISIDLE":8192,
+            "CLAWIO_LOCALFSXATTR_REDISPROP_MAXREDISACTIVE":0,
             "CLAWIO_LOCALFSXATTR_REDISPROP_PORT": 57023,
             "CLAWIO_SHAREDSECRET": "secret"
         },
@@ -137,9 +139,9 @@
             "CLAWIO_LOCALFSXATTR_META_TMPDIR": "/tmp/localfsxattr-redis",
             "CLAWIO_LOCALFSXATTR_META_PORT": 57021,
             "CLAWIO_LOCALFSXATTR_META_PROP": "service-localfsxattr-redisprop:57023",
-            "CLAWIO_LOCALFSXATTR_META_PROPMAXACTIVE": 1024,
-            "CLAWIO_LOCALFSXATTR_META_PROPMAXIDLE": 1024,
-            "CLAWIO_LOCALFSXATTR_META_PROPMAXCONCURRENCY": 1024,
+            "CLAWIO_LOCALFSXATTR_META_PROPMAXACTIVE": 8192,
+            "CLAWIO_LOCALFSXATTR_META_PROPMAXIDLE": 8192,
+            "CLAWIO_LOCALFSXATTR_META_PROPMAXCONCURRENCY": 8192,
             "CLAWIO_SHAREDSECRET": "secret"
         },
         "links": ["service-localfsxattr-redisprop:service-localfsxattr-redisprop"],
@@ -186,8 +188,8 @@
         "environment": {
             "CLAWIO_LOCALFSXATTR_MYSQLPROP_DSN": "prop:passforuserprop@tcp(service-localfsxattr-mysqlprop-mysql:57015)/prop",
             "CLAWIO_LOCALFSXATTR_MYSQLPROP_PORT": 57013,
-            "CLAWIO_LOCALFSXATTR_MYSQLPROP_MAXSQLIDLE": 1024,
-            "CLAWIO_LOCALFSXATTR_MYSQLPROP_MAXSQLCONCURRENCY": 1024,
+            "CLAWIO_LOCALFSXATTR_MYSQLPROP_MAXSQLIDLE": 8192,
+            "CLAWIO_LOCALFSXATTR_MYSQLPROP_MAXSQLCONCURRENCY": 8192,
             "CLAWIO_SHAREDSECRET": "secret"
         },
         "links": ["service-localfsxattr-mysqlprop-mysql:service-localfsxattr-mysqlprop-mysql"]
@@ -218,9 +220,9 @@
             "CLAWIO_LOCALFSXATTR_META_TMPDIR": "/tmp/localfsxattr-mysql",
             "CLAWIO_LOCALFSXATTR_META_PORT": 57011,
             "CLAWIO_LOCALFSXATTR_META_PROP": "service-localfsxattr-mysqlprop:57013",
-            "CLAWIO_LOCALFSXATTR_META_PROPMAXACTIVE": 1024,
-            "CLAWIO_LOCALFSXATTR_META_PROPMAXIDLE": 1024,
-            "CLAWIO_LOCALFSXATTR_META_PROPMAXCONCURRENCY": 1024,
+            "CLAWIO_LOCALFSXATTR_META_PROPMAXACTIVE": 8192,
+            "CLAWIO_LOCALFSXATTR_META_PROPMAXIDLE": 8192,
+            "CLAWIO_LOCALFSXATTR_META_PROPMAXCONCURRENCY": 8192,
             "CLAWIO_SHAREDSECRET": "secret"
         },
         "links": ["service-localfsxattr-mysqlprop:service-localfsxattr-mysqlprop"],
