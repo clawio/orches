@@ -47,7 +47,7 @@
         "environment": {
             "CLAWIO_LOCALFS_DATA_DATADIR": "/tmp/localfs",
             "CLAWIO_LOCALFS_DATA_TMPDIR": "/tmp",
-            "CLAWIO_LOCALFS_DATA_CHECKSUM": "md5",
+            "CLAWIO_LOCALFS_DATA_CHECKSUM": "",
             "CLAWIO_LOCALFS_DATA_PORT": 57002,
             "CLAWIO_LOCALFS_DATA_PROP": "service-localfs-prop:57003",
             "CLAWIO_SHAREDSECRET": "secret"
@@ -121,7 +121,7 @@
         "environment": {
             "CLAWIO_LOCALFSXATTR_DATA_DATADIR": "/tmp/localfsxattr-redis",
             "CLAWIO_LOCALFSXATTR_DATA_TMPDIR": "/tmp/localfsxattr-redis",
-            "CLAWIO_LOCALFSXATTR_DATA_CHECKSUM": "md5",
+            "CLAWIO_LOCALFSXATTR_DATA_CHECKSUM": "",
             "CLAWIO_LOCALFSXATTR_DATA_PORT": 57022,
             "CLAWIO_LOCALFSXATTR_DATA_PROP": "service-localfsxattr-redisprop:57023",
             "CLAWIO_SHAREDSECRET": "secret"
@@ -202,7 +202,7 @@
         "environment": {
             "CLAWIO_LOCALFSXATTR_DATA_DATADIR": "/tmp/localfsxattr-mysql",
             "CLAWIO_LOCALFSXATTR_DATA_TMPDIR": "/tmp/localfsxattr-mysql",
-            "CLAWIO_LOCALFSXATTR_DATA_CHECKSUM": "md5",
+            "CLAWIO_LOCALFSXATTR_DATA_CHECKSUM": "",
             "CLAWIO_LOCALFSXATTR_DATA_PORT": 57012,
             "CLAWIO_LOCALFSXATTR_DATA_PROP": "service-localfsxattr-mysqlprop:57013",
             "CLAWIO_SHAREDSECRET": "secret"

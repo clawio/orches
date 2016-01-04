@@ -27,6 +27,7 @@ OUT=${RESULTDIR}/`date +%Y%m%d%H%M`-$1-$NUMREQ-nochildren
         done;
         cat $OUT/output-p-$p-n-$NUMREQ-nochildren.csv | sort -g -k 2 > $OUT/output-p-$p-n-$NUMREQ-nochildren.csv-sorted
         mv $OUT/output-p-$p-n-$NUMREQ-nochildren.csv-sorted $OUT/output-p-$p-n-$NUMREQ-nochildren.csv
+	sleep 5
     done;
     cp generate_plot.gpl $OUT
     cd $OUT
