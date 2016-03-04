@@ -29,11 +29,9 @@ OUT=${RESULTDIR}/`date +%Y%m%d%H%M`-$1-$NUMREQ-nochildren
         mv $OUT/output-p-$p-n-$NUMREQ-nochildren.csv-sorted $OUT/output-p-$p-n-$NUMREQ-nochildren.csv
 	sleep 5
     done;
-    cp generate_plot.gpl $OUT
-    cd $OUT
-    gnuplot -e "title='$1'" generate_plot.gpl
 }
 
 clawiobench login ${USERNAME} ${PASSWORD}
 clawiobench home
+./setup_test_scenario.sh
 bench_nochildren $1

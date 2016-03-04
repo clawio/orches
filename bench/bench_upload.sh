@@ -26,4 +26,5 @@ function bench_upload {
 
 clawiobench login ${USERNAME} ${PASSWORD}
 clawiobench home
+./setup_test_scenario.sh
 bench_upload $1
