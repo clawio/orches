@@ -1,0 +1,9 @@
+#!/usr/bin/env gnuplot
+title=system("echo $title")
+set title title 
+set terminal png
+set logscale x 2
+set xlabel "Concurrency"
+set ylabel "Frequency (Hz)"
+plot "mean.csv" u 1:2 w linespoint
+

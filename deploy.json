@@ -8,8 +8,10 @@
             "CLAWIO_AUTH_DRIVER": "sqlite3",
             "CLAWIO_AUTH_SIGNMETHOD": "HS256",
             "CLAWIO_AUTH_PORT": 57000,
-            "CLAWIO_SHAREDSECRET": "secret"
+            "CLAWIO_SHAREDSECRET": "secret",
+            "CLAWIO_AUTH_LOGLEVEL": "error"
         }
+        "volumes": ["/tmp:/tmp"]
     },
 
     "service-localfs-prop-mysql": {

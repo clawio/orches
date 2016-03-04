@@ -1,8 +1,0 @@
-set title title
-set terminal png
-set output "stats.png"
-set logscale x 2
-set xlabel "Concurrency"
-set ylabel "Frequency (Hz)"
-plot "output-p-0-n-5000-nochildren.csv" u 2:5 w lines, "output-p-1-n-5000-nochildren.csv" u 2:5 w lines, "output-p-2-n-5000-nochildren.csv" u 2:5 w lines, "output-p-3-n-5000-nochildren.csv" u 2:5 w lines, "output-p-4-n-5000-nochildren.csv" u 2:5 w lines
-

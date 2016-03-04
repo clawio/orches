@@ -35,6 +35,13 @@ docker-compose -f deploy.json up -d --force-recreate
 
 # show services running.
 docker-compose -f deploy.json ps
+docker-compose -f deploy.json ps
+docker-compose -f deploy.json ps
+docker-compose -f deploy.json ps
+
+## Increase max connections for MySQL
+docker exec -it service-localfs-prop-mysql mysql -uroot -padmin -e "set global max_connections=100000"
+docker exec -it service-localfsxattr-mysqlprop-mysql mysql -uroot -padmin -e "set global max_connections=100000"
 
 echo "ClawIO is up and running"
 echo "If you see some service with status Exit run:"
