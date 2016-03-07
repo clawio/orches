@@ -21,6 +21,11 @@ function bench_upload {
         	clawiobench upload ${TESTDIR}/file-nochek --cern-distribution -n ${NUMREQ} -c $i --progress-bar=false -e $OUT/p-$p-n-$NUMREQ-c$i-cern.csv
 	done;
     	sleep 5
+	for i in `ls $OUT/p-$p-n-$NUMREQ-*-cern.csv`; do
+	    cat $i | tail -n +2 >> $OUT/output-p-$p-n-$NUMREQ-cern.csv
+	done;
+	cat $OUT/output-p-$p-n-$NUMREQ-cern.csv | sort -g -k 2 > $OUT/output-p-$p-n-$NUMREQ-cern.csv-sorted
+	mv $OUT/output-p-$p-n-$NUMREQ-cern.csv-sorted $OUT/output-p-$p-n-$NUMREQ-cern.csv
     done;
 }
 
