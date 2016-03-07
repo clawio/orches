@@ -10,7 +10,7 @@
             "CLAWIO_AUTH_PORT": 57000,
             "CLAWIO_SHAREDSECRET": "secret",
             "CLAWIO_AUTH_LOGLEVEL": "error"
-        }
+        },
         "volumes": ["/tmp:/tmp"]
     },
 
